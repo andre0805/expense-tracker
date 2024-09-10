@@ -1,0 +1,11 @@
+.componentContainer {
+  width: 100%;
+}
+
+.componentHeading {
+  color: rgb(145 145 145);
+}
+
+.componentSubheading {
+  color: rgb(153 145 17);
+}
