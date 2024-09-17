@@ -25,7 +25,7 @@ const Auth = () => {
     handleSubmit,
     setError,
     formState: { errors, isSubmitting, isLoading },
-  } = useForm<AuthFormData>({ defaultValues: { email: 'test@test.com', password: 'a1b2c3d4' } });
+  } = useForm<AuthFormData>();
 
   const onSubmit: SubmitHandler<AuthFormData> = async (data) => {
     try {
