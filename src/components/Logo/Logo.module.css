@@ -1,0 +1,13 @@
+.container {
+  margin: 12px;
+  width: 48px;
+  height: 48px;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  padding: 2px;
+  background: rgb(255 255 255);
+  border-radius: 100%;
+}
