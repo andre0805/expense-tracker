@@ -1,0 +1,85 @@
+form {
+  width: 350px;
+  margin: 64px auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  text-align: center;
+  background-color: rgb(255 255 255);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgb(0 0 0);
+}
+
+.title {
+  color: rgb(46 46 46);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.error {
+  color: rgb(255 0 0);
+  font-size: small;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  text-align: left;
+}
+
+.loginButtons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  justify-content: center;
+}
+
+.loginButton {
+  background-color: rgb(36 162 36 / 80%);
+}
+
+.loginButton:hover {
+  background-color: rgb(36 162 36);
+}
+
+.googleButton {
+  background-color: rgb(255 131 36);
+}
+
+.googleButton:hover {
+  background-color: rgb(255 115 0);
+}
+
+.signupContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: small;
+}
+
+.noAccount {
+  font-size: small;
+  color: rgb(141 141 141);
+}
+
+.signupButton {
+  color: rgb(96 185 96);
+  font-weight: 700;
+}
+
+.signupButton:hover {
+  color: rgb(96 185 96 / 80%);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signupButton:disabled {
+  cursor: not-allowed;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
