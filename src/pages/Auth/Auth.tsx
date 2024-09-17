@@ -126,14 +126,16 @@ export const Auth = () => {
             {isLogin ? 'Login' : 'Sign up'}
           </Button>
 
-          <Button
-            className={styles.googleButton}
-            type="button"
-            disabled={isSubmitting || isLoading}
-            onClick={handleGoogleLogin}
-          >
-            Google login
-          </Button>
+          {isLogin && (
+            <Button
+              className={styles.googleButton}
+              type="button"
+              disabled={isSubmitting || isLoading}
+              onClick={handleGoogleLogin}
+            >
+              Google login
+            </Button>
+          )}
         </div>
 
         <div className={styles.signupContainer}>

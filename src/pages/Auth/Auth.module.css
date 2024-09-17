@@ -62,16 +62,15 @@ form {
 
 .noAccount {
   font-size: small;
-  color: rgb(141 141 141);
+  color: rgb(46 46 46);
 }
 
 .signupButton {
-  color: rgb(96 185 96);
+  color: rgb(36 162 36);
   font-weight: 700;
 }
 
 .signupButton:hover {
-  color: rgb(96 185 96 / 80%);
   text-decoration: underline;
   cursor: pointer;
 }
