@@ -1,3 +1,13 @@
 .container {
-  padding: 8px;
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.balance {
+  color: rgb(255 255 255);
+}
+
+.transactions {
 }

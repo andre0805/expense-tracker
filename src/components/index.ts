@@ -3,3 +3,4 @@ export * from './Loading';
 export * from './Logo';
 export * from './NavBar';
 export * from './ProtectedRoutes';
+export * from './TransactionListItem';

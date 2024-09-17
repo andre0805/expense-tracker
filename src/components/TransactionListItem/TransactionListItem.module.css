@@ -1,0 +1,79 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: rgb(64 64 64);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 50%);
+  border-right: 1px solid rgb(0 0 0);
+  border-radius: 6px;
+}
+
+.container:hover {
+  background: rgb(64 64 64 / 80%);
+  cursor: pointer;
+}
+
+.income {
+  border-left: 4px solid rgb(144 238 144);
+}
+
+.expense {
+  border-left: 4px solid rgb(255 99 71);
+}
+
+.leftInfo {
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.date {
+  width: 36px;
+  height: 38px;
+  background: rgb(255 255 255 / 90%);
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0;
+  justify-content: center;
+}
+
+.day {
+  margin: 0;
+  padding: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgb(0 0 0);
+}
+
+.month {
+  margin: 0;
+  padding: 0;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: rgb(99 99 99);
+}
+
+.income .amount {
+  color: rgb(144 238 144);
+}
+
+.expense .amount {
+  color: rgb(255 99 71);
+}
+
+.amount {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgb(255 255 255 / 80%);
+}
