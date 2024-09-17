@@ -1,6 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router';
 import { useAuth } from '../../providers/AuthProvider';
 import { Loading } from '../Loading';
+import styles from './ProtectedRoutes.module.css';
 
 export const ProtectedRoutes = () => {
   const auth = useAuth();
@@ -8,7 +9,11 @@ export const ProtectedRoutes = () => {
   const location = useLocation();
 
   if (auth.isLoading) {
-    return <Loading />;
+    return (
+      <div className={styles.spinnerContainer}>
+        <Loading />
+      </div>
+    );
   }
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/auth'} state={{ from: { location } }} />;
