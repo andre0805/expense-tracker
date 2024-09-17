@@ -1,6 +1,5 @@
 import { Transaction } from '../../models/Transaction';
 
-export interface ITransactionListProps {
-  transactions: Transaction[];
+export interface IAddTransactionProps {
   onTransactionAdded: (transaction: Transaction) => void;
 }
