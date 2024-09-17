@@ -5,6 +5,7 @@ import { useAuth } from '../../providers/AuthProvider';
 import { FirebaseError } from 'firebase/app';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import { Loading } from '../../components';
 
 interface AuthFormData {
   email: string;
@@ -74,7 +75,11 @@ export const Auth = () => {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className={styles.spinnerContainer}>
+        <Loading />
+      </div>
+    );
   }
 
   return (
