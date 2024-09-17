@@ -8,11 +8,7 @@ export const NavBar = () => {
       <Logo />
 
       <div className={styles.items}>
-        <div className={styles.leftItems}>
-          <NavLink to={'/dashboard'} className={styles.link}>
-            Dashboard
-          </NavLink>
-        </div>
+        <div className={styles.leftItems}></div>
 
         <div className={styles.rightItems}>
           <NavLink to={'/profile'} className={styles.link}>
