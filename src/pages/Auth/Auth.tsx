@@ -11,7 +11,7 @@ interface AuthFormData {
   password: string;
 }
 
-const Auth = () => {
+export const Auth = () => {
   const auth = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
@@ -153,5 +153,3 @@ const Auth = () => {
     </form>
   );
 };
-
-export default Auth;

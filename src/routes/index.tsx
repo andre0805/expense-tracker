@@ -1,12 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Home from '../pages/Home/Home';
-import { NotFound } from '../pages/NotFound/NotFound';
-import { Layout } from '../components/Layout';
-import { ProtectedRoutes } from '../components';
-import Auth from '../pages/Auth/Auth';
-import Profile from '../pages/Profile/Profile';
+import { Auth, Home, NotFound, Profile } from '../pages';
+import { Layout, ProtectedRoutes } from '../components';
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <ProtectedRoutes />,
@@ -41,5 +37,3 @@ const router = createBrowserRouter([
     element: <NotFound />,
   },
 ]);
-
-export default router;

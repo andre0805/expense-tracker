@@ -1,7 +1,7 @@
 import { useAuth } from '../../providers/AuthProvider';
 import { Button } from '@mantine/core';
 
-const Profile = () => {
+export const Profile = () => {
   const auth = useAuth();
 
   const logout = () => {
@@ -15,5 +15,3 @@ const Profile = () => {
     </div>
   );
 };
-
-export default Profile;
