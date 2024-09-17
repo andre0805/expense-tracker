@@ -30,7 +30,7 @@ export const TransactionList = ({ transactions, onTransactionAdded }: ITransacti
       </Modal>
 
       <div className={styles.header}>
-        <h4 className={styles.title}>Transactions</h4>
+        <h4 className={styles.title}>Transactions ({transactions.length})</h4>
         <ActionIcon
           variant="outline"
           size="sm"
@@ -41,6 +41,8 @@ export const TransactionList = ({ transactions, onTransactionAdded }: ITransacti
           <IconPlus style={{ width: '70%', height: '70%' }} stroke={2} />
         </ActionIcon>
       </div>
+
+      {transactions.length === 0 && <div className={styles.empty}>No transactions yet</div>}
 
       {transactions.map((transaction) => (
         <TransactionListItem key={transaction.id} transaction={transaction} />
