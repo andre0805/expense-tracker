@@ -1,0 +1,26 @@
+.container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  place-items: center center;
+  flex-direction: column;
+  color: rgb(255 255 255);
+}
+
+.title {
+  margin-top: 48px;
+}
+
+.backButton {
+  margin-top: 24px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgb(144 238 144);
+  color: rgb(0 0 0);
+  text-decoration: none;
+  transition: background-color ease-in-out 0.1s;
+}
+
+.backButton:hover {
+  background: rgb(144 238 144 / 80%);
+}
