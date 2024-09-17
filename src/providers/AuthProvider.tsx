@@ -30,6 +30,7 @@ const googleLogin = () => {
 
 export type AuthContextData = {
   user: User | null;
+  isLoading?: boolean;
   login: typeof login;
   signup: typeof signup;
   logout: typeof logout;
@@ -50,19 +51,22 @@ interface IAuthProviderProps {
 
 export const AuthProvider: React.FunctionComponent<IAuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-
-      return () => {
-        unsubscribe();
-      };
+      setIsLoading(false);
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const value: AuthContextData = {
     user,
+    isLoading,
     login,
     signup,
     logout,

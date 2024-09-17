@@ -73,6 +73,10 @@ const Auth = () => {
     }
   }
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <p className={styles.title}>{isLogin ? 'Login' : 'Sign up'}</p>
@@ -121,6 +125,7 @@ const Auth = () => {
           <Button className={styles.loginButton} type="submit" disabled={isSubmitting || isLoading}>
             {isLogin ? 'Login' : 'Sign up'}
           </Button>
+
           <Button
             className={styles.googleButton}
             type="button"
