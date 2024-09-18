@@ -3,6 +3,8 @@ import { useAuth } from '../../providers/AuthProvider';
 import { Loading } from '../Loading';
 import styles from './ProtectedRoutes.module.css';
 
+// ovo s obzirom da je wrapper za odredjene stranice, islo bi u components/wrappers, pokusas organizirati komponente u grupe ako to ima smisla
+
 export const ProtectedRoutes = () => {
   const auth = useAuth();
   const isAuthenticated = auth.user != null;

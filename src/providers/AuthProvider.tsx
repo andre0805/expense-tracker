@@ -49,6 +49,10 @@ interface IAuthProviderProps {
   children: ReactNode;
 }
 
+/*
+ ako moze bez koristenja React.FunctionComponent ili React.FC i slicnog, u drugim komponentama je ok ovo bi izbjegla
+*/
+
 export const AuthProvider: React.FunctionComponent<IAuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);

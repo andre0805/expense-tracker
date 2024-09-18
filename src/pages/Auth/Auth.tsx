@@ -52,6 +52,8 @@ export const Auth = () => {
     }
   };
 
+  // gledati pisati arrow funkcije za sve
+
   function handleError(error: any) {
     if (error instanceof FirebaseError) {
       const errorCode = error.code;
@@ -102,6 +104,7 @@ export const Auth = () => {
           {...register('password', {
             required: 'Password is required',
             validate: (value) => {
+              // ova funkcija bi se trebala izvuci odvojeno pa onda ovdje samo pozvati, nikada se ne pisu funkcije citave unutar komponente
               if (isLogin) {
                 return true;
               }

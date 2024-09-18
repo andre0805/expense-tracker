@@ -1,6 +1,9 @@
 import styles from './NotFound.module.css';
 import { Link } from 'react-router-dom';
 
+// h1, h2 itd imaju svoju komponentu unutar mantinea, gledati i nju koristit sto je vise moguce
+// isto vrijedi i za ostalo, moze se koristit Text komponenta, pa proslijediti component="p" npr ako ide paragraf sa tim stilom
+
 export const NotFound = () => {
   return (
     <div className={styles.container}>
