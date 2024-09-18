@@ -1,13 +1,48 @@
 .container {
   width: 80%;
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  column-gap: 48px;
 }
 
-.balance {
+.balance,
+.stats {
   color: rgb(255 255 255);
+  font-size: 2rem;
+}
+
+.chartContainer {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  column-gap: 16px;
+  flex-grow: 0.5;
+}
+
+.chart {
+  font-size: small;
 }
 
 .transactions {
+  width: 100%;
+  flex-grow: 0.5;
+}
+
+@media (width < 768px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+    align-items: center;
+  }
+
+  .chartContainer {
+    order: -1;
+  }
 }
