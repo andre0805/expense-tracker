@@ -1,16 +1,19 @@
 import { IAddTransactionProps } from './AddTransaction.types';
 import styles from './AddTransaction.module.css';
 import { Button, NumberInput, SegmentedControl, TextInput } from '@mantine/core';
+import { Loading } from '../Loading';
+import { FormEvent, useState } from 'react';
+import { useAuth } from '../../providers/AuthProvider';
 import { Transaction } from '../../models/Transaction';
 import { Category } from '../../models/Category';
-import { Loading } from '../Loading';
-import { useState } from 'react';
 
 export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => {
+  const { user } = useAuth();
   const [amount, setAmount] = useState(0.01);
   const [category, setCategory] = useState(Category.Income);
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleAmountChange = (value: number | string) => {
     setAmount(Number(value));
@@ -24,12 +27,20 @@ export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => 
     setDescription(description);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => {
-      onTransactionAdded(new Transaction(description, amount, category));
-      setIsLoading(false);
-    }, 1000);
+    setError(null);
+
+    try {
+      await onTransactionAdded(
+        new Transaction(null, user?.uid ?? 'unknown', description, amount, category),
+      );
+    } catch (e) {
+      console.log(e);
+      setError('Failed to add transaction');
+    }
+    setIsLoading(false);
   };
 
   if (isLoading) {
@@ -80,6 +91,8 @@ export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => 
           onChange={(event) => handleDescriptionChange(event.currentTarget.value)}
         />
       </div>
+
+      {error && <p className={styles.error}>{error}</p>}
 
       <Button className={styles.submitButton} type="submit">
         Add

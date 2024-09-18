@@ -1,18 +1,44 @@
 import styles from './Home.module.css';
-import { Transaction } from '../../models/Transaction';
-import { useState } from 'react';
+import { Transaction, transactionConverter } from '../../models/Transaction';
+import { useEffect, useState } from 'react';
 import { LineChart } from '@mantine/charts';
 import { Category } from '../../models/Category';
 import { TransactionList } from '../../components/TransactionList';
+import { addTransaction, getTransactions } from '../../repository/transactions.service';
+import { useAuth } from '../../providers/AuthProvider';
 
 export const Home = () => {
+  const { user } = useAuth();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-  const balance = transactions.reduce(
-    (acc, t) => acc + (t.category === Category.Income ? t.amount : -t.amount),
-    0,
-  );
+  useEffect(() => {
+    if (user?.uid) {
+      getAllTransactions(user.uid);
+    }
+  }, []);
+
+  const getAllTransactions = async (uid: string) => {
+    try {
+      const snapshot = await getTransactions(uid);
+      const data = snapshot.docs.map((doc) => transactionConverter.fromFirestore(doc, {}));
+      setTransactions(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const balance = transactions.reduce((acc, t) => acc + (t.isIncome() ? t.amount : -t.amount), 0);
   const maxAmount = transactions.map((t) => t.amount).sort((a, b) => b - a)[0];
+
+  const handleTransactionAdded = async (transaction: Transaction) => {
+    try {
+      await addTransaction(transaction);
+      setTransactions([...transactions, transaction]);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -20,7 +46,7 @@ export const Home = () => {
         <h1 className={styles.balance}>Balance: {balance.toFixed(2)}€</h1>
         <TransactionList
           transactions={transactions.sort((t1, t2) => (t1.date > t2.date ? -1 : 1))}
-          onTransactionAdded={(t) => setTransactions([...transactions, t])}
+          onTransactionAdded={handleTransactionAdded}
         />
       </div>
 
@@ -33,9 +59,9 @@ export const Home = () => {
             data={transactions
               .sort((t1, t2) => (t1.date < t2.date ? -1 : 1))
               .map((t) => ({
-                date: t.dateString,
-                [Category.Income]: t.category === Category.Income ? t.amount : null,
-                [Category.Expense]: t.category === Category.Expense ? t.amount : null,
+                date: t.getDateString(),
+                [Category.Income]: t.isIncome() ? t.amount : null,
+                [Category.Expense]: t.isIncome() ? null : t.amount,
               }))}
             dataKey="date"
             series={[

@@ -11,8 +11,8 @@ export const TransactionList = ({ transactions, onTransactionAdded }: ITransacti
   const [opened, { open, close }] = useDisclosure(false);
   const isMobile = useMediaQuery('(max-width: 25em)');
 
-  const handleTransactionAdded = (transaction: Transaction) => {
-    onTransactionAdded(transaction);
+  const handleTransactionAdded = async (transaction: Transaction) => {
+    await onTransactionAdded(transaction);
     close();
   };
 
@@ -21,6 +21,7 @@ export const TransactionList = ({ transactions, onTransactionAdded }: ITransacti
       <Modal
         opened={opened}
         onClose={close}
+        onSubmit={() => {}}
         title="Add Transaction"
         centered
         fullScreen={isMobile ?? false}
