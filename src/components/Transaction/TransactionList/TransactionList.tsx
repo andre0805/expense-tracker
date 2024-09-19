@@ -5,9 +5,13 @@ import { ActionIcon, Flex, Modal, Text } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { AddTransaction } from '../AddTransaction';
-import { ITransaction } from '../../utils';
+import { ITransaction } from '../../../utils';
 
-export const TransactionList = ({ transactions, onTransactionAdded }: ITransactionListProps) => {
+export const TransactionList = ({
+  transactions,
+  onTransactionAdded,
+  onTransactionDeleted,
+}: ITransactionListProps) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const handleTransactionAdded = async (transaction: ITransaction) => {
@@ -44,7 +48,11 @@ export const TransactionList = ({ transactions, onTransactionAdded }: ITransacti
       {transactions.length === 0 && <Text className={styles.empty}>No transactions yet</Text>}
 
       {transactions.map((transaction) => (
-        <TransactionListItem key={transaction.id} transaction={transaction} />
+        <TransactionListItem
+          key={transaction.id}
+          transaction={transaction}
+          onTransactionDeleted={onTransactionDeleted}
+        />
       ))}
     </Flex>
   );

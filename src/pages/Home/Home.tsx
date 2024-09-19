@@ -2,7 +2,11 @@ import styles from './Home.module.css';
 import { useEffect, useState } from 'react';
 import { LineChart } from '@mantine/charts';
 import { Loading, TransactionList } from '../../components';
-import { addTransaction, getTransactions } from '../../repository/transactions.service';
+import {
+  addTransaction,
+  deleteTransaction,
+  getTransactions,
+} from '../../repository/transactions.service';
 import { useAuth } from '../../providers/AuthProvider';
 import {
   Category,
@@ -51,6 +55,16 @@ export const Home = () => {
     }
   };
 
+  const handleTransactionDeleted = async (transactionId: string) => {
+    try {
+      await deleteTransaction(transactionId);
+      setTransactions(transactions.filter((t) => t.id !== transactionId));
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
+
   if (isLoading) {
     return <Loading height={'200'} />;
   }
@@ -62,6 +76,7 @@ export const Home = () => {
         <TransactionList
           transactions={transactions.sort((t1, t2) => (t1.date > t2.date ? -1 : 1))}
           onTransactionAdded={handleTransactionAdded}
+          onTransactionDeleted={handleTransactionDeleted}
         />
       </Flex>
 

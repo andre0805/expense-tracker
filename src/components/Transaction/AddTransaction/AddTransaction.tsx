@@ -1,11 +1,11 @@
 import { IAddTransactionProps } from './AddTransaction.types';
 import styles from './AddTransaction.module.css';
 import { Flex, NumberInput, SegmentedControl, Text, TextInput } from '@mantine/core';
-import { Loading } from '../Loading';
+import { Loading } from '../../Loading';
 import { FormEvent, useState } from 'react';
-import { useAuth } from '../../providers/AuthProvider';
-import { Category, createTransaction } from '../../utils';
-import { PrimaryButton } from '../';
+import { useAuth } from '../../../providers/AuthProvider';
+import { Category, createTransaction } from '../../../utils';
+import { PrimaryButton } from '../../index';
 
 export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => {
   const { user } = useAuth();
@@ -48,7 +48,7 @@ export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => 
   }
 
   return (
-    <form className={styles.container} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Flex direction={'column'} justify={'center'} gap={8}>
         <Text component={'p'}>Amount</Text>
         <NumberInput
