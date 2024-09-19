@@ -6,7 +6,6 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <ProtectedRoutes />,
-    errorElement: <h1>Error</h1>,
     children: [
       {
         path: '/',
