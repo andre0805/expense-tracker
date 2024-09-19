@@ -1,7 +1,7 @@
 import styles from './Home.module.css';
 import { useEffect, useState } from 'react';
 import { LineChart } from '@mantine/charts';
-import { TransactionList } from '../../components';
+import { Loading, TransactionList } from '../../components';
 import { addTransaction, getTransactions } from '../../repository/transactions.service';
 import { useAuth } from '../../providers/AuthProvider';
 import {
@@ -17,10 +17,14 @@ import { Flex, Text } from '@mantine/core';
 export const Home = () => {
   const { user } = useAuth();
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (user?.uid) {
-      getAllTransactions(user.uid).catch((e) => console.log(e));
+      setIsLoading(true);
+      getAllTransactions(user.uid)
+        .catch((e) => console.log(e))
+        .finally(() => setIsLoading(false));
     }
   }, []);
 
@@ -46,6 +50,10 @@ export const Home = () => {
       throw e;
     }
   };
+
+  if (isLoading) {
+    return <Loading height={'200'} />;
+  }
 
   return (
     <Flex gap={48} className={styles.container}>
