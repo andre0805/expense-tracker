@@ -1,7 +1,8 @@
 import { useAuth } from '../../providers/AuthProvider';
-import { Avatar, Button, Flex, Text } from '@mantine/core';
+import { Avatar, Flex, Text } from '@mantine/core';
 import styles from './Profile.module.css';
 import { IconLogout } from '@tabler/icons-react';
+import { SecondaryButton } from '../../components';
 
 export const Profile = () => {
   const auth = useAuth();
@@ -32,13 +33,9 @@ export const Profile = () => {
         <Text className={styles.email}>{user?.email}</Text>
       </Flex>
 
-      <Button
-        className={styles.logoutButton}
-        leftSection={<IconLogout size={16} />}
-        onClick={logout}
-      >
+      <SecondaryButton mt={32} leftSection={<IconLogout size={16} />} onClick={logout}>
         Logout
-      </Button>
+      </SecondaryButton>
     </Flex>
   );
 };

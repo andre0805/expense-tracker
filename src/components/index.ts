@@ -1,4 +1,5 @@
 export * from './AddTransaction';
+export * from './Button';
 export * from './Loading';
 export * from './Logo';
 export * from './NavBar';

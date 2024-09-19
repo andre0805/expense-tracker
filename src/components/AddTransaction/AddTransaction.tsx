@@ -1,10 +1,11 @@
 import { IAddTransactionProps } from './AddTransaction.types';
 import styles from './AddTransaction.module.css';
-import { Button, Flex, NumberInput, SegmentedControl, Text, TextInput } from '@mantine/core';
+import { Flex, NumberInput, SegmentedControl, Text, TextInput } from '@mantine/core';
 import { Loading } from '../Loading';
 import { FormEvent, useState } from 'react';
 import { useAuth } from '../../providers/AuthProvider';
 import { Category, createTransaction } from '../../utils';
+import { PrimaryButton } from '../';
 
 export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => {
   const { user } = useAuth();
@@ -94,9 +95,9 @@ export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => 
         </Text>
       )}
 
-      <Button className={styles.submitButton} type="submit">
+      <PrimaryButton mt={8} mx={'auto'} type="submit">
         Add
-      </Button>
+      </PrimaryButton>
     </form>
   );
 };

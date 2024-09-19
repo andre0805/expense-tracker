@@ -23,14 +23,6 @@
   color: var(--mantine-color-error);
 }
 
-.loginButton {
-  background-color: var(--mantine-color-green-6);
-}
-
-.loginButton:hover {
-  background-color: var(--mantine-color-green-7);
-}
-
 .googleButton {
   background-color: var(--mantine-color-orange-6);
 }

@@ -1,0 +1,7 @@
+.button {
+  background-color: var(--mantine-color-red-8);
+}
+
+.button:hover {
+  background-color: var(--mantine-color-red-9);
+}

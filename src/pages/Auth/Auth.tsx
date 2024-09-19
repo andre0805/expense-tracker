@@ -1,11 +1,11 @@
 import styles from './Auth.module.css';
-import { Anchor, Button, Center, Flex, PasswordInput, Text, TextInput } from '@mantine/core';
+import { Anchor, Center, Flex, PasswordInput, Text, TextInput } from '@mantine/core';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAuth } from '../../providers/AuthProvider';
 import { FirebaseError } from 'firebase/app';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { Loading } from '../../components';
+import { Button, Loading, PrimaryButton } from '../../components';
 
 interface AuthFormData {
   email: string;
@@ -124,9 +124,9 @@ export const Auth = () => {
         </Flex>
 
         <Flex justify={'center'} gap={12}>
-          <Button className={styles.loginButton} type="submit" disabled={isSubmitting || isLoading}>
+          <PrimaryButton type="submit" disabled={isSubmitting || isLoading}>
             {isLogin ? 'Login' : 'Sign up'}
-          </Button>
+          </PrimaryButton>
 
           {isLogin && (
             <Button
