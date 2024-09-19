@@ -1,5 +1,5 @@
-import { Transaction } from '../../models/Transaction';
+import { ITransaction } from '../../utils';
 
 export interface ITransactionListItemProps {
-  transaction: Transaction;
+  transaction: ITransaction;
 }

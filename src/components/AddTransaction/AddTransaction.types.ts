@@ -1,5 +1,5 @@
-import { Transaction } from '../../models/Transaction';
+import { ITransaction } from '../../utils';
 
 export interface IAddTransactionProps {
-  onTransactionAdded: (transaction: Transaction) => Promise<void>;
+  onTransactionAdded: (transaction: ITransaction) => Promise<void>;
 }

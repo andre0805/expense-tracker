@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router';
-import { useAuth } from '../../providers/AuthProvider';
-import { Loading } from '../Loading';
+import { useAuth } from '../../../providers/AuthProvider';
+import { Loading } from '../../Loading';
 import styles from './ProtectedRoutes.module.css';
 
 export const ProtectedRoutes = () => {

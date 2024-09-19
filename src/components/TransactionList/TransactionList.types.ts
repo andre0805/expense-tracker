@@ -1,6 +1,6 @@
-import { Transaction } from '../../models/Transaction';
+import { ITransaction } from '../../utils';
 
 export interface ITransactionListProps {
-  transactions: Transaction[];
-  onTransactionAdded: (transaction: Transaction) => void;
+  transactions: ITransaction[];
+  onTransactionAdded: (transaction: ITransaction) => void;
 }

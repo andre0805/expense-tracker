@@ -1,5 +1,5 @@
 import styles from './Auth.module.css';
-import { Button, PasswordInput, TextInput } from '@mantine/core';
+import { Button, PasswordInput, Text, TextInput } from '@mantine/core';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAuth } from '../../providers/AuthProvider';
 import { FirebaseError } from 'firebase/app';
@@ -52,7 +52,7 @@ export const Auth = () => {
     }
   };
 
-  function handleError(error: any) {
+  const handleError = (error: any) => {
     if (error instanceof FirebaseError) {
       const errorCode = error.code;
 
@@ -72,7 +72,23 @@ export const Auth = () => {
     } else {
       setError('root', { type: 'manual', message: 'Something went wrong' });
     }
-  }
+  };
+
+  const validatePassword = (value: string): string | boolean => {
+    if (isLogin) {
+      return true;
+    }
+
+    if (value.length < 8) {
+      return 'Password should contain at least 8 characters';
+    }
+
+    if (!/\d/.test(value) || !/[a-zA-Z]/.test(value)) {
+      return 'Password should contain letters and numbers';
+    }
+
+    return true;
+  };
 
   if (isLoading) {
     return (
@@ -84,7 +100,7 @@ export const Auth = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <p className={styles.title}>{isLogin ? 'Login' : 'Sign up'}</p>
+      <Text component={'p'}>{isLogin ? 'Login' : 'Sign up'}</Text>
       <div className={styles.input}>
         <TextInput
           {...register('email', {
@@ -101,21 +117,7 @@ export const Auth = () => {
         <PasswordInput
           {...register('password', {
             required: 'Password is required',
-            validate: (value) => {
-              if (isLogin) {
-                return true;
-              }
-
-              if (value.length < 8) {
-                return 'Password should contain at least 8 characters';
-              }
-
-              if (!/\d/.test(value) || !/[a-zA-Z]/.test(value)) {
-                return 'Password should contain letters and numbers';
-              }
-
-              return true;
-            },
+            validate: validatePassword,
           })}
           className={styles.password}
           placeholder="Password"

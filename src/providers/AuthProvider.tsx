@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import {
   createUserWithEmailAndPassword,
@@ -49,7 +49,7 @@ interface IAuthProviderProps {
   children: ReactNode;
 }
 
-export const AuthProvider: React.FunctionComponent<IAuthProviderProps> = ({ children }) => {
+export const AuthProvider = ({ children }: IAuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 

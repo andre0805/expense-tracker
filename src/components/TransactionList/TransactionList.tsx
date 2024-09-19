@@ -5,14 +5,14 @@ import { ActionIcon, Modal } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { AddTransaction } from '../AddTransaction';
-import { Transaction } from '../../models/Transaction';
+import { ITransaction } from '../../utils';
 
 export const TransactionList = ({ transactions, onTransactionAdded }: ITransactionListProps) => {
   const [opened, { open, close }] = useDisclosure(false);
   const isMobile = useMediaQuery('(max-width: 25em)');
 
-  const handleTransactionAdded = async (transaction: Transaction) => {
-    await onTransactionAdded(transaction);
+  const handleTransactionAdded = async (transaction: ITransaction) => {
+    onTransactionAdded(transaction);
     close();
   };
 
@@ -22,7 +22,7 @@ export const TransactionList = ({ transactions, onTransactionAdded }: ITransacti
         opened={opened}
         onClose={close}
         onSubmit={() => {}}
-        title="Add Transaction"
+        title="Add ITransaction"
         centered
         fullScreen={isMobile ?? false}
         transitionProps={{ transition: 'fade', duration: 200 }}

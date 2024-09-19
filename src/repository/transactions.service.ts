@@ -9,7 +9,8 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import { Transaction, transactionConverter } from '../models/Transaction';
+import { ITransaction } from '../utils/types';
+import { transactionConverter } from '../utils';
 
 const COLLECTION_NAME = 'transactions';
 
@@ -22,7 +23,7 @@ export const getTransactions = async (uid: string) => {
   return getDocs(q);
 };
 
-export const addTransaction = async (transaction: Transaction) => {
+export const addTransaction = async (transaction: ITransaction) => {
   return addDoc(collection(db, COLLECTION_NAME), transactionConverter.toFirestore(transaction));
 };
 

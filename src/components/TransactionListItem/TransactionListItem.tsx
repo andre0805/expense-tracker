@@ -1,12 +1,13 @@
 import { ITransactionListItemProps } from './TransactionListItem.types';
 import styles from './TransactionListItem.module.css';
+import { isIncome } from '../../utils';
 
 export const TransactionListItem = ({ transaction }: ITransactionListItemProps) => {
   return (
     <div
       className={styles.container
         .concat(' ')
-        .concat(transaction.isIncome() ? styles.income : styles.expense)}
+        .concat(isIncome(transaction) ? styles.income : styles.expense)}
     >
       <div className={styles.leftInfo}>
         <div className={styles.date}>
@@ -19,7 +20,7 @@ export const TransactionListItem = ({ transaction }: ITransactionListItemProps) 
       </div>
       <div className={styles.rightInfo}>
         <div className={styles.amount}>
-          {transaction.isIncome() ? '+' : '-'}
+          {isIncome(transaction) ? '+' : '-'}
           {transaction.amount}€
         </div>
       </div>

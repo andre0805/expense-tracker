@@ -4,8 +4,7 @@ import { Button, NumberInput, SegmentedControl, TextInput } from '@mantine/core'
 import { Loading } from '../Loading';
 import { FormEvent, useState } from 'react';
 import { useAuth } from '../../providers/AuthProvider';
-import { Transaction } from '../../models/Transaction';
-import { Category } from '../../models/Category';
+import { Category, createTransaction } from '../../utils';
 
 export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => {
   const { user } = useAuth();
@@ -34,7 +33,7 @@ export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => 
 
     try {
       await onTransactionAdded(
-        new Transaction(null, user?.uid ?? 'unknown', description, amount, category),
+        createTransaction(null, user?.uid ?? 'unknown', description, amount, category),
       );
     } catch (e) {
       console.log(e);

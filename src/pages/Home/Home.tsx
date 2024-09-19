@@ -1,19 +1,25 @@
 import styles from './Home.module.css';
-import { Transaction, transactionConverter } from '../../models/Transaction';
 import { useEffect, useState } from 'react';
 import { LineChart } from '@mantine/charts';
-import { Category } from '../../models/Category';
-import { TransactionList } from '../../components/TransactionList';
+import { TransactionList } from '../../components';
 import { addTransaction, getTransactions } from '../../repository/transactions.service';
 import { useAuth } from '../../providers/AuthProvider';
+import {
+  Category,
+  getDateString,
+  isExpense,
+  isIncome,
+  ITransaction,
+  transactionConverter,
+} from '../../utils';
 
 export const Home = () => {
   const { user } = useAuth();
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState<ITransaction[]>([]);
 
   useEffect(() => {
     if (user?.uid) {
-      getAllTransactions(user.uid);
+      getAllTransactions(user.uid).catch((e) => console.log(e));
     }
   }, []);
 
@@ -27,10 +33,10 @@ export const Home = () => {
     }
   };
 
-  const balance = transactions.reduce((acc, t) => acc + (t.isIncome() ? t.amount : -t.amount), 0);
+  const balance = transactions.reduce((acc, t) => acc + (isIncome(t) ? t.amount : -t.amount), 0);
   const maxAmount = transactions.map((t) => t.amount).sort((a, b) => b - a)[0];
 
-  const handleTransactionAdded = async (transaction: Transaction) => {
+  const handleTransactionAdded = async (transaction: ITransaction) => {
     try {
       await addTransaction(transaction);
       setTransactions([...transactions, transaction]);
@@ -59,9 +65,9 @@ export const Home = () => {
             data={transactions
               .sort((t1, t2) => (t1.date < t2.date ? -1 : 1))
               .map((t) => ({
-                date: t.getDateString(),
-                [Category.Income]: t.isIncome() ? t.amount : null,
-                [Category.Expense]: t.isIncome() ? null : t.amount,
+                date: getDateString(t),
+                [Category.Income]: isIncome(t) ? t.amount : null,
+                [Category.Expense]: isExpense(t) ? t.amount : null,
               }))}
             dataKey="date"
             series={[
