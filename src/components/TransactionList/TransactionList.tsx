@@ -22,7 +22,7 @@ export const TransactionList = ({ transactions, onTransactionAdded }: ITransacti
         opened={opened}
         onClose={close}
         onSubmit={() => {}}
-        title="Add ITransaction"
+        title="Add Transaction"
         centered
         fullScreen={isMobile ?? false}
         transitionProps={{ transition: 'fade', duration: 200 }}
