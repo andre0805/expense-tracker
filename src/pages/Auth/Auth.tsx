@@ -1,5 +1,5 @@
 import styles from './Auth.module.css';
-import { Button, PasswordInput, Text, TextInput } from '@mantine/core';
+import { Anchor, Button, Center, Flex, PasswordInput, Text, TextInput } from '@mantine/core';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAuth } from '../../providers/AuthProvider';
 import { FirebaseError } from 'firebase/app';
@@ -91,44 +91,39 @@ export const Auth = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className={styles.spinnerContainer}>
-        <Loading />
-      </div>
-    );
+    return <Loading isFullPage={true} />;
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Text component={'p'}>{isLogin ? 'Login' : 'Sign up'}</Text>
-      <div className={styles.input}>
-        <TextInput
-          {...register('email', {
-            required: isLogin ? false : 'Email is required',
-            pattern: {
-              value: /\S+@\S+\.\S+/,
-              message: 'Invalid email',
-            },
-          })}
-          className={styles.email}
-          placeholder="E-mail"
-          error={errors.email?.message}
-        />
-        <PasswordInput
-          {...register('password', {
-            required: 'Password is required',
-            validate: validatePassword,
-          })}
-          className={styles.password}
-          placeholder="Password"
-          error={errors.password?.message}
-        />
+    <Center w={'100vw'} h={'80vh'}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <Text className={styles.title}>{isLogin ? 'Login' : 'Sign up'}</Text>
 
-        <div className={styles.error}>{errors.root?.message}</div>
-      </div>
+        <Flex direction={'column'} rowGap={8}>
+          <TextInput
+            {...register('email', {
+              required: isLogin ? false : 'Email is required',
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: 'Invalid email',
+              },
+            })}
+            placeholder="E-mail"
+            error={errors.email?.message}
+          />
+          <PasswordInput
+            {...register('password', {
+              required: 'Password is required',
+              validate: validatePassword,
+            })}
+            placeholder="Password"
+            error={errors.password?.message}
+          />
 
-      <div className={styles.buttons}>
-        <div className={styles.loginButtons}>
+          <Text className={styles.error}>{errors.root?.message}</Text>
+        </Flex>
+
+        <Flex justify={'center'} gap={12}>
           <Button className={styles.loginButton} type="submit" disabled={isSubmitting || isLoading}>
             {isLogin ? 'Login' : 'Sign up'}
           </Button>
@@ -143,22 +138,18 @@ export const Auth = () => {
               Google login
             </Button>
           )}
-        </div>
+        </Flex>
 
-        <div className={styles.signupContainer}>
-          <p className={styles.noAccount}>
+        <Flex justify={'center'} align={'center'} gap={8}>
+          <Text className={styles.noAccountText}>
             {isLogin ? "Don't have an account?" : 'Already have an account?'}
-          </p>
-          <button
-            className={styles.signupButton}
-            type="button"
-            disabled={isSubmitting || isLoading}
-            onClick={() => setIsLogin(!isLogin)}
-          >
+          </Text>
+
+          <Anchor className={styles.signupButton} onClick={() => setIsLogin(!isLogin)}>
             {isLogin ? 'Sign up' : 'Login'}
-          </button>
-        </div>
-      </div>
-    </form>
+          </Anchor>
+        </Flex>
+      </form>
+    </Center>
   );
 };

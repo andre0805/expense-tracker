@@ -1,14 +1,27 @@
 import styles from './NotFound.module.css';
-import { Link } from 'react-router-dom';
+import { Button, Flex, Text } from '@mantine/core';
+import { useNavigate } from 'react-router';
 
 export const NotFound = () => {
+  const navigate = useNavigate();
+
+  const goToHomepage = () => {
+    navigate('/');
+  };
+
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Not Found</h1>
-      <h3 className={styles.description}>The page you are looking for does not exist</h3>
-      <Link to="/" className={styles.backButton}>
+    <Flex
+      direction={'column'}
+      justify={'center'}
+      align={'center'}
+      gap={32}
+      className={styles.container}
+    >
+      <Text className={styles.title}>Not Found</Text>
+      <Text className={styles.subtitle}>The page you are looking for does not exist</Text>
+      <Button className={styles.backButton} onClick={goToHomepage}>
         Homepage
-      </Link>
-    </div>
+      </Button>
+    </Flex>
   );
 };

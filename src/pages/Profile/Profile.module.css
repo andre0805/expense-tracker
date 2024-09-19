@@ -1,35 +1,11 @@
 .container {
-  margin: 0;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.userDetails {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 8px;
-}
-
-.profileImage {
-  width: 100px;
-  height: 100px;
-  margin: 16px auto;
-  border-radius: 50%;
-}
-
-p {
-  margin: 0;
-  padding: 0;
+  margin-top: 48px;
 }
 
 .name {
   font-size: 1.5rem;
   font-weight: 700;
+  color: var(--mantine-color-white);
 }
 
 .email {
@@ -38,9 +14,9 @@ p {
 
 .logoutButton {
   margin: 32px auto;
-  background-color: rgb(223 0 0 / 80%);
+  background-color: var(--mantine-color-red-8);
 }
 
 .logoutButton:hover {
-  background-color: rgb(223 0 0);
+  background-color: var(--mantine-color-red-9);
 }

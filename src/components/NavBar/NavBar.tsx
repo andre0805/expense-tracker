@@ -7,15 +7,9 @@ export const NavBar = () => {
     <nav>
       <Logo />
 
-      <div className={styles.items}>
-        <div className={styles.leftItems}></div>
-
-        <div className={styles.rightItems}>
-          <NavLink to={'/profile'} className={styles.link}>
-            Profile
-          </NavLink>
-        </div>
-      </div>
+      <NavLink to={'/profile'} className={styles.link}>
+        Profile
+      </NavLink>
     </nav>
   );
 };

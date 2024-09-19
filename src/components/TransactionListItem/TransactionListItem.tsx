@@ -1,29 +1,36 @@
 import { ITransactionListItemProps } from './TransactionListItem.types';
 import styles from './TransactionListItem.module.css';
 import { isIncome } from '../../utils';
+import { Flex, Text } from '@mantine/core';
+import clsx from 'clsx';
 
 export const TransactionListItem = ({ transaction }: ITransactionListItemProps) => {
   return (
-    <div
-      className={styles.container
-        .concat(' ')
-        .concat(isIncome(transaction) ? styles.income : styles.expense)}
+    <Flex
+      justify={'space-between'}
+      align={'center'}
+      className={clsx(styles.container, isIncome(transaction) ? styles.income : styles.expense)}
     >
-      <div className={styles.leftInfo}>
-        <div className={styles.date}>
-          <div className={styles.day}>{transaction.date.getDate()}</div>
-          <div className={styles.month}>
+      <Flex justify={'center'} align={'center'} gap={16}>
+        <Flex
+          direction={'column'}
+          justify={'center'}
+          align={'center'}
+          gap={0}
+          className={styles.date}
+        >
+          <Text className={styles.day}>{transaction.date.getDate()}</Text>
+          <Text className={styles.month}>
             {transaction.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}
-          </div>
-        </div>
-        <div className={styles.description}>{transaction.description}</div>
-      </div>
-      <div className={styles.rightInfo}>
-        <div className={styles.amount}>
-          {isIncome(transaction) ? '+' : '-'}
-          {transaction.amount}€
-        </div>
-      </div>
-    </div>
+          </Text>
+        </Flex>
+        <Text className={styles.description}>{transaction.description}</Text>
+      </Flex>
+
+      <Text className={styles.amount}>
+        {isIncome(transaction) ? '+' : '-'}
+        {transaction.amount}€
+      </Text>
+    </Flex>
   );
 };

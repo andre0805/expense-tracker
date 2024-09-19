@@ -1,4 +1,4 @@
-form {
+.form {
   width: 350px;
   margin: 64px auto;
   padding: 16px;
@@ -6,79 +6,52 @@ form {
   flex-direction: column;
   row-gap: 16px;
   text-align: center;
-  background-color: rgb(255 255 255);
+  background-color: var(--mantine-color-white);
   border-radius: 8px;
   box-shadow: 0 2px 6px rgb(0 0 0);
 }
 
 .title {
-  color: rgb(46 46 46);
+  padding: 4px;
   font-size: 1.5rem;
   font-weight: 700;
-  margin: 0;
+  color: var(--mantine-color-dark-4);
 }
 
 .error {
-  color: rgb(255 0 0);
   font-size: 0.8rem;
-}
-
-.input {
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-  text-align: left;
-}
-
-.loginButtons {
-  display: flex;
-  flex-direction: row;
-  column-gap: 8px;
-  justify-content: center;
+  color: var(--mantine-color-error);
 }
 
 .loginButton {
-  background-color: rgb(36 162 36 / 80%);
+  background-color: var(--mantine-color-green-6);
 }
 
 .loginButton:hover {
-  background-color: rgb(36 162 36);
+  background-color: var(--mantine-color-green-7);
 }
 
 .googleButton {
-  background-color: rgb(255 131 36);
+  background-color: var(--mantine-color-orange-6);
 }
 
 .googleButton:hover {
-  background-color: rgb(255 115 0);
+  background-color: var(--mantine-color-orange-7);
 }
 
-.signupContainer {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.noAccountText {
   font-size: 0.8rem;
-  column-gap: 8px;
-}
-
-.noAccount {
-  font-size: 0.8rem;
-  color: rgb(46 46 46);
+  color: var(--mantine-color-dark-4);
 }
 
 .signupButton {
-  margin: 0;
-  padding: 0;
-  color: rgb(36 162 36);
+  color: var(--mantine-color-green-6);
+  font-size: 0.8rem;
   font-weight: 700;
-  border: none;
-  background-color: transparent;
 }
 
 .signupButton:hover {
-  text-decoration: underline;
-  cursor: pointer;
+  color: var(--mantine-color-green-7);
 }
 
 .signupButton:disabled {
@@ -87,11 +60,4 @@ form {
 
 button:disabled {
   opacity: 0.5;
-}
-
-.spinnerContainer {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

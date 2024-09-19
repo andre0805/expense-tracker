@@ -1,39 +1,13 @@
-.container {
+form {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   margin: 8px 0;
   padding: 0;
-  row-gap: 16px;
   background: transparent;
   box-shadow: none;
   text-align: start;
-}
-
-.transactionItem {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  row-gap: 4px;
-}
-
-.amount {
-  width: 100%;
-}
-
-.categoryWrapper {
-  width: 100%;
-}
-
-.category {
-  width: 100%;
-}
-
-.description {
-  width: 100%;
-  outline: none;
+  row-gap: 24px;
 }
 
 .submitButton {
@@ -45,14 +19,7 @@
   transition: background 0.3s;
 }
 
-.spinnerContainer {
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .error {
-  color: rgb(255 0 0);
   font-size: 0.8rem;
+  color: var(--mantine-color-error);
 }

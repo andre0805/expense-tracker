@@ -1,6 +1,6 @@
 import { IAddTransactionProps } from './AddTransaction.types';
 import styles from './AddTransaction.module.css';
-import { Button, NumberInput, SegmentedControl, TextInput } from '@mantine/core';
+import { Button, Flex, NumberInput, SegmentedControl, Text, TextInput } from '@mantine/core';
 import { Loading } from '../Loading';
 import { FormEvent, useState } from 'react';
 import { useAuth } from '../../providers/AuthProvider';
@@ -38,24 +38,19 @@ export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => 
     } catch (e) {
       console.log(e);
       setError('Failed to add transaction');
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   if (isLoading) {
-    return (
-      <div className={styles.spinnerContainer}>
-        <Loading />
-      </div>
-    );
+    return <Loading width={'100%'} height={'200px'} />;
   }
 
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
-      <div className={styles.transactionItem}>
-        <p>Amount</p>
+      <Flex direction={'column'} justify={'center'} gap={8}>
+        <Text component={'p'}>Amount</Text>
         <NumberInput
-          className={styles.amount}
           placeholder="20€"
           size="md"
           min={0.01}
@@ -65,33 +60,39 @@ export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => 
           value={amount}
           onChange={handleAmountChange}
         />
-      </div>
+      </Flex>
 
-      <div className={styles.transactionItem}>
-        <p>Category</p>
+      <Flex direction={'column'} justify={'center'} gap={8}>
+        <Text component={'p'}>Category</Text>
         <SegmentedControl
-          className={styles.category}
           data={['Income', 'Expense']}
-          color={category == Category.Income ? 'teal' : 'red'}
+          color={
+            category == Category.Income
+              ? 'var(--mantine-color-green-5)'
+              : 'var(--mantine-color-red-8)'
+          }
           fullWidth
           onChange={(category) =>
             handleCategoryChange(category === 'Income' ? Category.Income : Category.Expense)
           }
         />
-      </div>
+      </Flex>
 
-      <div className={styles.transactionItem}>
-        <p>Description</p>
+      <Flex direction={'column'} justify={'center'} gap={8}>
+        <Text component={'p'}>Description</Text>
         <TextInput
-          className={styles.description}
           placeholder="Description"
           value={description}
           required
           onChange={(event) => handleDescriptionChange(event.currentTarget.value)}
         />
-      </div>
+      </Flex>
 
-      {error && <p className={styles.error}>{error}</p>}
+      {error && (
+        <Text component={'p'} className={styles.error}>
+          {error}
+        </Text>
+      )}
 
       <Button className={styles.submitButton} type="submit">
         Add

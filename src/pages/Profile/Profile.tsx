@@ -1,7 +1,6 @@
 import { useAuth } from '../../providers/AuthProvider';
-import { Button } from '@mantine/core';
+import { Avatar, Button, Flex, Text } from '@mantine/core';
 import styles from './Profile.module.css';
-import avatarPlaceholder from '../../assets/avatar.svg';
 import { IconLogout } from '@tabler/icons-react';
 
 export const Profile = () => {
@@ -12,15 +11,27 @@ export const Profile = () => {
     return auth.logout();
   };
 
-  const profileImage = user?.photoURL ? user.photoURL : avatarPlaceholder;
-
   return (
-    <div className={styles.container}>
-      <div className={styles.userDetails}>
-        <img src={profileImage} alt="User profile" className={styles.profileImage} />
-        <p className={styles.name}>{user?.displayName}</p>
-        <p className={styles.email}>{user?.email}</p>
-      </div>
+    <Flex direction={'column'} justify={'center'} align={'center'} className={styles.container}>
+      <Flex direction={'column'} justify={'center'} align={'center'} gap={16}>
+        <Avatar
+          src={user?.photoURL || null}
+          alt="User profile"
+          variant="light"
+          size={100}
+          color={'green'}
+          radius="50%"
+        >
+          {user?.displayName
+            ?.split(' ')
+            .map((name) => name[0].toUpperCase())
+            .join('')}
+        </Avatar>
+
+        <Text className={styles.name}>{user?.displayName}</Text>
+        <Text className={styles.email}>{user?.email}</Text>
+      </Flex>
+
       <Button
         className={styles.logoutButton}
         leftSection={<IconLogout size={16} />}
@@ -28,6 +39,6 @@ export const Profile = () => {
       >
         Logout
       </Button>
-    </div>
+    </Flex>
   );
 };

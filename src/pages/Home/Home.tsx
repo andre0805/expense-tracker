@@ -12,6 +12,7 @@ import {
   ITransaction,
   transactionConverter,
 } from '../../utils';
+import { Flex, Text } from '@mantine/core';
 
 export const Home = () => {
   const { user } = useAuth();
@@ -47,18 +48,18 @@ export const Home = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.transactions}>
-        <h1 className={styles.balance}>Balance: {balance.toFixed(2)}€</h1>
+    <Flex gap={48} className={styles.container}>
+      <Flex direction={'column'} gap={8} className={styles.transactions}>
+        <Text className={styles.balance}>Balance: {balance.toFixed(2)}€</Text>
         <TransactionList
           transactions={transactions.sort((t1, t2) => (t1.date > t2.date ? -1 : 1))}
           onTransactionAdded={handleTransactionAdded}
         />
-      </div>
+      </Flex>
 
       {transactions.length != 0 && (
-        <div className={styles.chartContainer}>
-          <h1 className={styles.stats}>Stats</h1>
+        <Flex direction={'column'} gap={8} className={styles.chartContainer}>
+          <Text className={styles.stats}>Stats</Text>
           <LineChart
             className={styles.chart}
             h={300}
@@ -71,8 +72,8 @@ export const Home = () => {
               }))}
             dataKey="date"
             series={[
-              { color: 'rgb(144 238 144)', name: Category.Income },
-              { color: 'rgb(255 99 71)', name: Category.Expense },
+              { color: 'var(--mantine-color-green-5)', name: Category.Income },
+              { color: 'var(--mantine-color-red-8)', name: Category.Expense },
             ]}
             xAxisProps={{ padding: { left: 30, right: 30 } }}
             yAxisProps={{ domain: [0, maxAmount * 1.4] }}
@@ -80,8 +81,8 @@ export const Home = () => {
             curveType="monotone"
             strokeDasharray="10 10"
           />
-        </div>
+        </Flex>
       )}
-    </div>
+    </Flex>
   );
 };
