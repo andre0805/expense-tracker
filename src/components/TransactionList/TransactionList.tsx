@@ -12,7 +12,7 @@ export const TransactionList = ({ transactions, onTransactionAdded }: ITransacti
   const isMobile = useMediaQuery('(max-width: 25em)');
 
   const handleTransactionAdded = async (transaction: ITransaction) => {
-    onTransactionAdded(transaction);
+    await onTransactionAdded(transaction);
     close();
   };
 
