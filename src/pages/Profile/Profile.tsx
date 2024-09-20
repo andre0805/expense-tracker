@@ -33,7 +33,11 @@ export const Profile = () => {
         <Text className={styles.email}>{user?.email}</Text>
       </Flex>
 
-      <SecondaryButton mt={32} leftSection={<IconLogout size={16} />} onClick={logout}>
+      <SecondaryButton
+        className={styles.logoutButton}
+        leftSection={<IconLogout size={16} />}
+        onClick={logout}
+      >
         Logout
       </SecondaryButton>
     </Flex>

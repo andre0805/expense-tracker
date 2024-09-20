@@ -1,3 +1,8 @@
+.deleteButton {
+  margin-top: 8px;
+  margin-inline: auto;
+}
+
 .error {
   font-size: 0.8rem;
   color: var(--mantine-color-error);

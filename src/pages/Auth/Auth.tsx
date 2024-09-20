@@ -5,7 +5,7 @@ import { useAuth } from '../../providers/AuthProvider';
 import { FirebaseError } from 'firebase/app';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { Button, Loading, PrimaryButton } from '../../components';
+import { BaseButton, Loading, PrimaryButton } from '../../components';
 
 interface AuthFormData {
   email: string;
@@ -124,19 +124,18 @@ export const Auth = () => {
         </Flex>
 
         <Flex justify={'center'} gap={12}>
-          <PrimaryButton type="submit" disabled={isSubmitting || isLoading}>
+          <PrimaryButton type={'submit'} disabled={isSubmitting || isLoading}>
             {isLogin ? 'Login' : 'Sign up'}
           </PrimaryButton>
 
           {isLogin && (
-            <Button
+            <BaseButton
               className={styles.googleButton}
-              type="button"
               disabled={isSubmitting || isLoading}
               onClick={handleGoogleLogin}
             >
               Google login
-            </Button>
+            </BaseButton>
           )}
         </Flex>
 

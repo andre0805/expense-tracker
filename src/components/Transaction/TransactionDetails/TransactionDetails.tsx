@@ -63,8 +63,7 @@ export const TransactionDetails = ({
       )}
 
       <SecondaryButton
-        mt={8}
-        mx={'auto'}
+        className={styles.deleteButton}
         leftSection={<IconTrash size={16} />}
         onClick={handleDelete}
       >

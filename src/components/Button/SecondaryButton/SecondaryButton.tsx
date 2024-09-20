@@ -1,6 +1,9 @@
 import styles from './SecondaryButton.module.css';
-import { Button } from '../Button';
+import { BaseButton } from '../BaseButton';
+import { BaseButtonProps } from '../BaseButton.types';
+import clsx from 'clsx';
 
-export const SecondaryButton = ({ ...props }) => {
-  return <Button className={styles.button} {...props}></Button>;
+export const SecondaryButton = ({ className, ...props }: BaseButtonProps) => {
+  const combinedClassName = clsx(styles.button, className);
+  return <BaseButton {...props} className={combinedClassName}></BaseButton>;
 };

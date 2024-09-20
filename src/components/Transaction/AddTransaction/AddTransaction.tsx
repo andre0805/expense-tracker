@@ -95,7 +95,7 @@ export const AddTransaction = ({ onTransactionAdded }: IAddTransactionProps) => 
         </Text>
       )}
 
-      <PrimaryButton mt={8} mx={'auto'} type="submit">
+      <PrimaryButton type="submit" className={styles.addButton}>
         Add
       </PrimaryButton>
     </form>
