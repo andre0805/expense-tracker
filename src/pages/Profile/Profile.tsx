@@ -3,13 +3,17 @@ import { Avatar, Flex, Text } from '@mantine/core';
 import styles from './Profile.module.css';
 import { IconLogout } from '@tabler/icons-react';
 import { SecondaryButton } from '../../components';
+import { useNavigate } from 'react-router';
 
 export const Profile = () => {
   const auth = useAuth();
   const user = auth.user;
+  const navigate = useNavigate();
 
   const logout = () => {
-    return auth.logout();
+    auth.logout().then(() => {
+      navigate('/auth');
+    });
   };
 
   return (

@@ -19,7 +19,7 @@ export const Auth = () => {
 
   // Retrieve the location from where the user was redirected
   const location = useLocation();
-  const from = location.state.from.location.pathname || '/';
+  const from = location.state?.from?.location?.pathname || '/';
 
   const {
     register,
